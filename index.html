@@ -77,29 +77,6 @@
             </div>
         </div>
     </header>
-    <script>
-        // Navbar mobile menu logic
-        const navbarToggle = document.getElementById('navbar-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenu = document.getElementById('close-menu');
-        // Open mobile menu
-        navbarToggle.addEventListener('click', () => {
-            mobileMenu.classList.remove('translate-x-full');
-            document.body.style.overflow = 'hidden';
-        });
-        // Close mobile menu
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.add('translate-x-full');
-            document.body.style.overflow = '';
-        });
-        // Close menu on link click
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
-                document.body.style.overflow = '';
-            });
-        });
-    </script>
 
     <!-- Hero Section -->
     <section id="home"
@@ -119,7 +96,7 @@
                 </p>
                 <a href="#order"
                     class="bg-gradient-to-r from-[#f4d03f] to-[#f7dc6f] text-[#2c3e30] py-3 px-8 rounded-full text-lg font-bold transition-all duration-300 inline-block shadow-lg hover:shadow-2xl hover:scale-105">
-                    اطلب الآن - خصم 40%
+                    اطلب الآن - خصم <span id="Discount_rate"></span>%
                 </a>
             </div>
         </div>
@@ -180,12 +157,12 @@
 
                     <div class="bg-white bg-opacity-10 p-6 rounded-lg mb-6">
                         <div class="text-xl font-semibold mb-2">
-                            السعر الأصلي: <span class="line-through text-red-400">200 جنيه</span>
+                            السعر الأصلي: <span id="originalPrice" class="line-through text-red-400"></span>
                         </div>
                         <div class="text-3xl font-extrabold text-yellow-300 mb-2">
-                            120 جنيه فقط
+                            <span id="discountPrice"></span>
                         </div>
-                        <div class="bg-red-500 text-white py-2 px-4 rounded-full inline-block font-semibold">
+                        <div class="bg-red-500 text-white py-2 px-4 rounded-full inline-block font-semibold" id="discountBadge">
                             توفر 40%
                         </div>
                     </div>
@@ -359,50 +336,29 @@
                     <div class="mb-4">
                         <label class="block text-gray-700 font-semibold mb-2">اختر الكمية:</label>
                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                            <div class="bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32] hover:bg-[#6b7c32] hover:text-white quantity-option"
+                            <div id="quantity-option-1" class="bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32] hover:bg-[#6b7c32] hover:text-white quantity-option"
                                 data-quantity="1" data-price="120">
-                                <div class="text-lg font-bold mb-2">
-                                    عبوة واحدة
-                                </div>
-                                <div class="text-gray-700">
-                                    120 جنيه
-                                </div>
+                                <div class="text-lg font-bold mb-2"></div>
+                                <div class="text-gray-700"></div>
+                                <div class="text-red-500 text-sm font-semibold"></div>
                             </div>
-                            <div class="bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32] hover:bg-[#6b7c32] hover:text-white quantity-option"
+                            <div id="quantity-option-2" class="bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32] hover:bg-[#6b7c32] hover:text-white quantity-option"
                                 data-quantity="2" data-price="200">
-                                <div class="text-lg font-bold mb-2">
-                                    عبوتان
-                                </div>
-                                <div class="text-gray-700">
-                                    200 جنيه
-                                </div>
-                                <div class="text-red-500 text-sm font-semibold">
-                                    وفر 40 جنيه
-                                </div>
+                                <div class="text-lg font-bold mb-2"></div>
+                                <div class="text-gray-700"></div>
+                                <div class="text-red-500 text-sm font-semibold"></div>
                             </div>
-                            <div class="bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32] hover:bg-[#6b7c32] hover:text-white quantity-option"
+                            <div id="quantity-option-3" class="bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32] hover:bg-[#6b7c32] hover:text-white quantity-option"
                                 data-quantity="3" data-price="270">
-                                <div class="text-lg font-bold mb-2">
-                                    3 عبوات
-                                </div>
-                                <div class="text-gray-700">
-                                    270 جنيه
-                                </div>
-                                <div class="text-red-500 text-sm font-semibold">
-                                    وفر 90 جنيه
-                                </div>
+                                <div class="text-lg font-bold mb-2"></div>
+                                <div class="text-gray-700"></div>
+                                <div class="text-red-500 text-sm font-semibold"></div>
                             </div>
-                            <div class="bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32] hover:bg-[#6b7c32] hover:text-white quantity-option"
+                            <div id="quantity-option-4" class="bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32] hover:bg-[#6b7c32] hover:text-white quantity-option"
                                 data-quantity="4" data-price="320">
-                                <div class="text-lg font-bold mb-2">
-                                    4 عبوات
-                                </div>
-                                <div class="text-gray-700">
-                                    320 جنيه
-                                </div>
-                                <div class="text-red-500 text-sm font-semibold">
-                                    وفر 160 جنيه
-                                </div>
+                                <div class="text-lg font-bold mb-2"></div>
+                                <div class="text-gray-700"></div>
+                                <div class="text-red-500 text-sm font-semibold"></div>
                             </div>
                         </div>
                         <input type="hidden" id="selectedQuantity" name="selectedQuantity" value="">
@@ -420,131 +376,15 @@
 
     <!-- Order Status Modal -->
     <div id="orders-modal" class="fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center hidden">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl p-8 relative">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl p-8 relative sm:p-8 p-2 sm:rounded-xl rounded-lg sm:w-full w-[98vw] sm:max-w-2xl max-w-[98vw] h-auto sm:h-auto min-h-[60vh] flex flex-col justify-start">
             <button id="close-orders"
-                class="sm:absolute fixed sm:left-4 left-10 w-10 h-10  bg-[#566] rounded-full sm:top-4 text-2xl text-white hover:text-red-500">&times;</button>
-            <h3 class="text-2xl font-bold mb-6 text-[#6b7c32] flex items-center gap-2">
+                class="absolute left-4 w-10 h-10 bg-[#566] rounded-full top-4 text-2xl text-white hover:text-red-500">&times;</button>
+            <h3 class="text-2xl font-bold mb-6 text-[#6b7c32] flex items-center gap-2 sm:text-2xl text-lg">
                 <span>🛒</span> متابعة حالة الطلبات
             </h3>
-            <div id="orders-list" class="space-y-4 min-h-[120px] text-right"></div>
+            <div id="orders-list" class="space-y-4 min-h-[120px] text-right flex-1 overflow-y-auto"></div>
         </div>
     </div>
-    <script>
-        // فتح وغلق مودال الطلبات
-        const ordersModal = document.getElementById('orders-modal');
-        document.getElementById('close-orders').onclick = () => ordersModal.classList.add('hidden');
-
-        // زر فتح المودال بعد فورم الطلب
-        const orderSection = document.getElementById('order');
-        if (orderSection) {
-            const btn = document.createElement('button');
-            btn.id = 'open-orders';
-            btn.innerHTML = '<span class="mr-2">📦</span>متابعة حالة الطلبات';
-            btn.className = 'mt-8 mb-4 bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-3 px-8 rounded-full text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 flex items-center gap-2 mx-auto';
-            btn.style.display = 'block';
-            orderSection.querySelector('.max-w-xl').appendChild(btn);
-            btn.onclick = async function () {
-                // تحقق من الصلاحية
-                try {
-                    const res = await fetch('https://olive-oil-store-api.vercel.app/api/user/check', { credentials: 'include' });
-                    if (res.ok) {
-                        ordersModal.classList.remove('hidden');
-                        loadOrders();
-                    } else {
-                        document.getElementById('auth-modal').classList.remove('hidden');
-                    }
-                } catch {
-                    document.getElementById('auth-modal').classList.remove('hidden');
-                }
-            };
-        }
-        // جلب الطلبات وعرضها في مودال مع شريط جانبي
-        async function loadOrders() {
-            const ordersList = document.getElementById('orders-list');
-            ordersList.innerHTML = '<div class="text-center text-gray-500 py-8">جاري تحميل الطلبات...</div>';
-            try {
-                const res = await fetch('https://olive-oil-store-api.vercel.app/api/order/myorders', { credentials: 'include' });
-                const orders = await res.json();
-                if (Array.isArray(orders) && orders.length > 0) {
-                    // بناء الشريط الجانبي وقسم التفاصيل
-                    let sidebar = `<div id="orders-sidebar" class="w-full md:w-1/3 max-h-[400px] overflow-y-auto border-l md:border-l-0 md:border-r border-gray-200 pr-2 md:pr-0 md:pl-2 flex-shrink-0 bg-[#f8f9fa] rounded-lg mb-4 md:mb-0">`;
-                    sidebar += orders.map((o, i) => `
-        <div class="order-item cursor-pointer p-3 rounded-lg mb-2 flex items-center gap-2 transition hover:bg-[#e9ecef] ${i === 0 ? 'bg-[#e9ecef]' : ''}" data-index="${i}">
-          <span class="text-[#6b7c32] font-bold">${o._id.slice(-6).toUpperCase()}</span>
-          <span class="text-xs px-2 py-1 rounded-full ${getStatusColor(o.status)}">${o.status || 'قيد التنفيذ'}</span>
-        </div>
-      `).join('') + '</div>';
-                    let details = `<div id="order-details" class="flex-1">${renderOrderTimeline(orders[0])}</div>`;
-                    ordersList.innerHTML = `<div class="flex flex-col md:flex-row gap-4">${sidebar}${details}</div>`;
-                    // تفعيل التبديل بين الطلبات
-                    document.querySelectorAll('.order-item').forEach(item => {
-                        item.onclick = function () {
-                            document.querySelectorAll('.order-item').forEach(i => i.classList.remove('bg-[#e9ecef]'));
-                            this.classList.add('bg-[#e9ecef]');
-                            const idx = +this.getAttribute('data-index');
-                            document.getElementById('order-details').innerHTML = renderOrderTimeline(orders[idx]);
-                        };
-                    });
-                } else {
-                    ordersList.innerHTML = '<div class="text-center text-gray-500 py-8">لا توجد طلبات بعد.</div>';
-                }
-            } catch {
-                ordersList.innerHTML = '<div class="text-center text-red-500 py-8">تعذر تحميل الطلبات.</div>';
-            }
-        }
-        function getStatusColor(status) {
-            if (status === 'تم التسليم' || status === 'تم التوصيل') return 'bg-green-100 text-green-700';
-            if (status === 'جاري التوصيل') return 'bg-yellow-100 text-yellow-700';
-            if (status === 'جاري التجهيز') return 'bg-blue-100 text-blue-700';
-            return 'bg-gray-200 text-gray-700';
-        }
-        // رسم خط زمني لحالة الطلب
-        function renderOrderTimeline(order) {
-            // مراحل الطلب
-            const steps = [
-                { label: 'تم القبول', icon: '✅' },
-                { label: 'جاري التجهيز', icon: '🛒' },
-                { label: 'جاري التوصيل', icon: '🚚' },
-                { label: 'تم التسليم', icon: '📦' }
-            ];
-            // تحديد المرحلة الحالية بناءً على order.status
-            let currentStep = 0;
-            if (order.status === 'جاري التجهيز') currentStep = 1;
-            else if (order.status === 'جاري التوصيل') currentStep = 2;
-            else if (order.status === 'تم التسليم' || order.status === 'تم التوصيل') currentStep = 3;
-            // بناء الخط الزمني
-            const timeline = `
-    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8 py-2">
-      ${steps.map((step, i) => `
-        <div class="flex flex-col items-center flex-1">
-          <div class="w-10 h-10 flex items-center justify-center rounded-full text-2xl font-bold ${i < currentStep ? 'bg-green-200 text-green-700' : i === currentStep ? 'bg-yellow-300 text-yellow-900 border-2 border-yellow-500' : 'bg-gray-200 text-gray-400'}">
-            ${step.icon}
-          </div>
-          <div class="mt-2 text-xs md:text-sm font-bold ${i === currentStep ? 'text-yellow-700' : i < currentStep ? 'text-green-700' : 'text-gray-400'}">${step.label}</div>
-        </div>
-        ${i < steps.length - 1 ? `<div class="flex-1 h-1 ${i < currentStep ? 'bg-green-400' : 'bg-gray-200'}"></div>` : ''}
-      `).join('')}
-    </div>
-  `;
-            return `
-    <div class="bg-[#f8f9fa] rounded-lg p-4 shadow border-r-4 ${currentStep === 3 ? 'border-green-500' : currentStep === 2 ? 'border-yellow-400' : 'border-gray-400'} mb-2">
-      <div class="font-bold text-lg text-[#6b7c32] flex items-center gap-2">طلب رقم: <span class="text-[#f4d03f]">${order._id.slice(-6).toUpperCase()}</span>
-        </div>
-      <div class="text-gray-700 mt-1">${order.address} - ${order.city}</div>
-      <div class="text-gray-500 text-sm mt-1">بتاريخ: ${new Date(order.createdAt).toLocaleDateString('ar-EG')}</div>
-        <div class="text-gray-600 text-sm mt-1">السعر: <span class="text-[#f4d03f]">${order.price} جنيه</span></div>
-      <div class="text-gray-600 text-sm">الكمية: ${order.quantity}</div>
-      ${timeline}
-    </div>
-  `;
-        }
-        // Close modal when clicking outside of it
-        window.addEventListener('click', function (event) {
-            if (event.target === ordersModal) {
-                ordersModal.classList.add('hidden');
-            }
-        });
-    </script>
     <style>
         /* حركة طفو الزيتونة */
         @keyframes float {
@@ -591,33 +431,24 @@
             display: block !important;
         }
 
-        @media (max-width: 768px) {
-            #orders-modal .flex.md\:flex-row {
-                flex-direction: column !important;
-            }
-
-            #orders-sidebar {
-                width: 100% !important;
-                max-width: 100% !important;
-                margin-bottom: 1rem;
-                border: none !important;
-                border-bottom: 1px solid #e5e7eb !important;
-                border-radius: 0.75rem 0.75rem 0 0 !important;
-            }
-
-            #order-details {
-                width: 100% !important;
-                max-width: 100% !important;
-                overflow-x: auto;
-            }
-
+        @media (max-width: 640px) {
             #orders-modal .bg-white {
                 padding: 0.5rem !important;
+                border-radius: 0.75rem !important;
+                width: 98vw !important;
+                max-width: 98vw !important;
+                min-height: 60vh !important;
+                height: auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: flex-start !important;
             }
 
-            #orders-modal .font-bold,
-            #orders-modal .text-lg {
-                font-size: 1rem !important;
+            #orders-list {
+                flex: 1 1 0%;
+                overflow-y: auto;
+                min-height: 200px;
+                max-height: 60vh;
             }
         }
     </style>
@@ -676,386 +507,24 @@
             </div>
         </div>
     </div>
-    <script>
 
-        document.querySelectorAll('.quantity-option').forEach(option => {
-            option.addEventListener('click', function () {
-
-                document.querySelectorAll('.quantity-option').forEach(opt => {
-                    opt.classList.remove('border-[#6b7c32]', 'bg-[#6b7c32]', 'text-white');
-                    opt.classList.add('bg-[#f8f9fa]');
-                });
-
-                this.classList.remove('bg-[#f8f9fa]');
-                this.classList.add('border-[#6b7c32]', 'bg-[#6b7c32]', 'text-white');
-
-                document.getElementById('selectedQuantity').value = this.getAttribute('data-quantity');
-                document.getElementById('selectedPrice').value = this.getAttribute('data-price');
-
-            });
-        });
-
-
-        // Timeline scroll effect
-        const sections = [
-            document.getElementById('home'),
-            document.getElementById('features'),
-            document.getElementById('product'),
-            document.getElementById('testimonials'),
-            document.getElementById('order')
-        ];
-        const timelinePoints = document.querySelectorAll('.timeline-point');
-        function activateTimelinePoint() {
-            let index = 0;
-            const scrollY = window.scrollY + window.innerHeight / 3;
-            for (let i = 0; i < sections.length; i++) {
-                if (sections[i].offsetTop <= scrollY) {
-                    index = i;
-                }
-            }
-            timelinePoints.forEach((point, i) => {
-                if (i === index) point.classList.add('active');
-                else point.classList.remove('active');
-            });
-        }
-        window.addEventListener('scroll', activateTimelinePoint);
-        activateTimelinePoint();
-        // Click to scroll
-        timelinePoints.forEach((point, i) => {
-            point.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = sections[i];
-                window.scrollTo({
-                    top: target.offsetTop - 60,
-                    behavior: 'smooth'
-                });
-            });
-        });
-        // أضف أيقونة متحركة للنقطة النشطة
-        function updateTimelineActive() {
-            const points = document.querySelectorAll('.timeline-point');
-            points.forEach((point, i) => {
-                if (point.classList.contains('active')) {
-                    point.querySelector('.animate-pulse')?.style.setProperty('display', 'block');
-                } else {
-                    point.querySelector('.animate-pulse')?.style.setProperty('display', 'none');
-                }
-            });
-        }
-        window.addEventListener('scroll', updateTimelineActive);
-        updateTimelineActive();
-    </script>
-    <script>
-        // إرسال بيانات الفورم للـ API عند الإرسال
-        document.getElementById('orderForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const form = e.target;
-            // const data = {
-            //     name: form.name.value,
-            //     phone: form.phone.value,
-            //     address: form.address.value,
-            //     city: form.city.value,
-            //     quantity: form.selectedQuantity.value,
-            //     price:  
-            // };
-            const data = Object.fromEntries(new FormData(this));
-            const orderMsg = document.getElementById('orderMsg');
-            function showOrderMsg(text, success = true) {
-                orderMsg.textContent = text;
-                orderMsg.className = 'fixed top-8 left-1/2 -translate-x-1/2 z-[9999] px-6 py-3 rounded-lg shadow-lg text-lg font-bold ' + (success ? 'bg-green-600 text-white' : 'bg-red-600 text-white');
-                orderMsg.style.display = 'block';
-                setTimeout(() => { orderMsg.style.display = 'none'; }, 2000);
-            }
-            try {
-                const res = await fetch('https://olive-oil-store-api.vercel.app/api/order', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include',
-                    body: JSON.stringify(data)
-                });
-                if (res.ok) {
-                    showOrderMsg('تم إرسال طلبك بنجاح! سنقوم بالتواصل معك قريباً.', true);
-                    form.reset();
-                } else {
-                    const errorText = await res.text();
-                    showOrderMsg('حدث خطأ أثناء إرسال الطلب: ' + errorText, false);
-                }
-            } catch (err) {
-                showOrderMsg('تعذر الاتصال بالخادم. تحقق من اتصالك بالإنترنت.', false);
-            }
-        });
-    </script>
-
-    <!-- User Auth Modals -->
-    <div id="auth-modal" class="fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center hidden">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-8 relative">
-            <button id="close-auth"
-                class="absolute left-4 top-4 text-2xl text-gray-400 hover:text-red-500">&times;</button>
-            <div id="auth-tabs" class="flex mb-6 border-b">
-                <button id="show-register"
-                    class="flex-1 py-2 text-lg font-bold border-b-2 border-[#6b7c32] text-[#6b7c32]">تسجيل جديد</button>
-                <button id="show-login" class="flex-1 py-2 text-lg font-bold text-gray-500">تسجيل دخول</button>
-            </div>
-            <!-- Register Form -->
-            <form id="registerForm" class="space-y-4">
-                <input type="text" name="name" placeholder="الاسم الكامل" required class="w-full p-3 border rounded-lg">
-                <input type="email" name="email" placeholder="البريد الإلكتروني" required
-                    class="w-full p-3 border rounded-lg">
-                <input type="password" name="password" placeholder="كلمة المرور" required
-                    class="w-full p-3 border rounded-lg">
-                <button type="submit"
-                    class="w-full bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-3 rounded-lg font-bold hover:scale-105 transition">تسجيل
-                    جديد</button>
-                <div id="registerMsg" class="text-center text-sm mt-2"></div>
-            </form>
-            <!-- Login Form -->
-            <form id="loginForm" class="space-y-4 hidden">
-                <input type="email" name="email" placeholder="البريد الإلكتروني" required
-                    class="w-full p-3 border rounded-lg">
-                <input type="password" name="password" placeholder="كلمة المرور" required
-                    class="w-full p-3 border rounded-lg">
-                <button type="submit"
-                    class="w-full bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-3 rounded-lg font-bold hover:scale-105 transition">تسجيل
-                    دخول</button>
-                <div id="loginMsg" class="text-center text-sm mt-2"></div>
-            </form>
-        </div>
-    </div>
-    <!-- زر فتح المودال -->
-    <button id="open-auth"
-        class="fixed bottom-6 left-6 z-[9999] bg-[#6b7c32] text-white px-6 py-3 rounded-full shadow-lg font-bold hover:bg-[#8ba446] transition">تسجيل
-        / دخول</button>
-    <script>
-        // فتح وغلق المودال
-        const authModal = document.getElementById('auth-modal');
-        document.getElementById('open-auth').onclick = () => authModal.classList.remove('hidden');
-        document.getElementById('close-auth').onclick = () => authModal.classList.add('hidden');
-        // التبديل بين التبويبات
-        const showRegister = document.getElementById('show-register');
-        const showLogin = document.getElementById('show-login');
-        const registerForm = document.getElementById('registerForm');
-        const loginForm = document.getElementById('loginForm');
-        showRegister.onclick = () => {
-            showRegister.classList.add('border-b-2', 'border-[#6b7c32]', 'text-[#6b7c32]');
-            showLogin.classList.remove('border-b-2', 'border-[#6b7c32]', 'text-[#6b7c32]');
-            showLogin.classList.add('text-gray-500');
-            registerForm.classList.remove('hidden');
-            loginForm.classList.add('hidden');
-        };
-        showLogin.onclick = () => {
-            showLogin.classList.add('border-b-2', 'border-[#6b7c32]', 'text-[#6b7c32]');
-            showRegister.classList.remove('border-b-2', 'border-[#6b7c32]', 'text-[#6b7c32]');
-            showRegister.classList.add('text-gray-500');
-            loginForm.classList.remove('hidden');
-            registerForm.classList.add('hidden');
-        };
-        // إرسال فورم التسجيل
-        registerForm.onsubmit = async function (e) {
-            e.preventDefault();
-            const data = Object.fromEntries(new FormData(this));
-            const msg = document.getElementById('registerMsg');
-            msg.textContent = 'جاري التسجيل...';
-            try {
-                const res = await fetch('https://olive-oil-store-api.vercel.app/api/user/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-                const result = await res.json();
-                if (res.ok) {
-                    msg.textContent = 'تم التسجيل بنجاح! يمكنك تسجيل الدخول الآن.';
-                    msg.className = 'text-green-600 text-center mt-2';
-                    this.reset();
-                } else {
-                    msg.textContent = result.message || 'حدث خطأ.';
-                    msg.className = 'text-red-600 text-center mt-2';
-                }
-            } catch {
-                msg.textContent = 'تعذر الاتصال بالخادم.';
-                msg.className = 'text-red-600 text-center mt-2';
-            }
-        };
-        // إرسال فورم تسجيل الدخول
-        loginForm.onsubmit = async function (e) {
-            e.preventDefault();
-            const data = Object.fromEntries(new FormData(this));
-            const msg = document.getElementById('loginMsg');
-            msg.textContent = 'جاري تسجيل الدخول...';
-            try {
-                const res = await fetch('https://olive-oil-store-api.vercel.app/api/user/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data),
-                    credentials: 'include'
-                });
-                const result = await res.json();
-                if (res.ok) {
-                    msg.textContent = 'تم تسجيل الدخول بنجاح!';
-                    msg.className = 'text-green-600 text-center mt-2';
-                    this.reset();
-                    setTimeout(() => authModal.classList.add('hidden'), 1000);
-                } else {
-                    msg.textContent = result.message || 'حدث خطأ.';
-                    msg.className = 'text-red-600 text-center mt-2';
-                }
-            } catch {
-                msg.textContent = 'تعذر الاتصال بالخادم.';
-                msg.className = 'text-red-600 text-center mt-2';
-            }
-        };
-    </script>
-    <div id="orderMsg"
-        class="fixed top-8 left-1/2 -translate-x-1/2 z-[9999] px-6 py-3 rounded-lg shadow-lg text-lg font-bold hidden">
-    </div>
-    <script>
-        // إخفاء زر تسجيل / دخول إذا كان المستخدم مسجل الدخول
-        async function checkAuthAndToggleUI() {
-            const authBtn = document.getElementById('open-auth');
-            try {
-                const res = await fetch('https://olive-oil-store-api.vercel.app/api/user/check', {
-                    credentials: 'include'
-                });
-                if (res.ok) {
-                    // المستخدم مسجل الدخول
-                    if (authBtn) authBtn.style.display = 'none';
-                    window.isUserAuthenticated = true;
-                } else {
-                    if (authBtn) authBtn.style.display = '';
-                    window.isUserAuthenticated = false;
-                }
-            } catch {
-                if (authBtn) authBtn.style.display = '';
-                window.isUserAuthenticated = false;
-            }
-        }
-        checkAuthAndToggleUI();
-
-        // منع إرسال الطلب إذا لم يكن المستخدم مسجل الدخول
-        const orderForm = document.getElementById('orderForm');
-        if (orderForm) {
-            orderForm.addEventListener('submit', async function (e) {
-                if (!window.isUserAuthenticated) {
-                    e.preventDefault();
-                    document.getElementById('auth-modal').classList.remove('hidden');
-                    return;
-                }
-                // ...existing code for order submission...
-            }, true);
-        }
-    </script>
-
-    <!-- Footer -->
-    <footer class="bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-8 mt-16 text-center relative">
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4">
-            <div class="text-lg font-bold">جميع الحقوق محفوظة &copy; زيت الذهب الأخضر 2024</div>
-            <button id="open-review"
-                class="bg-white text-[#6b7c32] font-bold px-6 py-3 rounded-full shadow-lg hover:bg-[#f4d03f] hover:text-[#2c3e30] transition">قيّم
-                تجربتك ⭐</button>
-        </div>
-    </footer>
-    <!-- Review Modal -->
-    <div id="review-modal" class="fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center hidden">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-8 relative">
-            <button id="close-review"
-                class="absolute left-4 top-4 text-2xl text-gray-400 hover:text-red-500">&times;</button>
-            <h3 class="text-2xl font-bold mb-4 text-[#6b7c32]">قيّم تجربتك معنا</h3>
-            <form id="reviewForm" class="space-y-4">
-                <div>
-                    <label class="block mb-2 font-semibold">التقييم (من 1 إلى 5):</label>
-                    <select name="rating" required class="w-full p-3 border rounded-lg">
-                        <option value="">اختر التقييم</option>
-                        <option value="5">⭐⭐⭐⭐⭐ ممتاز</option>
-                        <option value="4">⭐⭐⭐⭐ جيد جداً</option>
-                        <option value="3">⭐⭐⭐ جيد</option>
-                        <option value="2">⭐⭐ مقبول</option>
-                        <option value="1">⭐ ضعيف</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block mb-2 font-semibold">تعليقك (اختياري):</label>
-                    <textarea name="comment" rows="3" class="w-full p-3 border rounded-lg"></textarea>
-                </div>
-                <button type="submit"
-                    class="w-full bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-3 rounded-lg font-bold hover:scale-105 transition">إرسال
-                    التقييم</button>
-                <div id="reviewMsg" class="text-center text-sm mt-2"></div>
-            </form>
-        </div>
-    </div>
-    <script>
-        // فتح وغلق مودال التقييم
-        const reviewModal = document.getElementById('review-modal');
-        document.getElementById('open-review').onclick = async function () {
-            // تحقق من الصلاحية قبل عرض فورم التقييم
-            try {
-                const res = await fetch('https://olive-oil-store-api.vercel.app/api/user/check', { credentials: 'include' });
-                if (res.ok) {
-                    reviewModal.classList.remove('hidden');
-                } else {
-                    document.getElementById('auth-modal').classList.remove('hidden');
-                }
-            } catch {
-                document.getElementById('auth-modal').classList.remove('hidden');
-            }
-        };
-        document.getElementById('close-review').onclick = () => reviewModal.classList.add('hidden');
-        // إرسال فورم التقييم
-        document.getElementById('reviewForm').onsubmit = async function (e) {
-            e.preventDefault();
-            const data = Object.fromEntries(new FormData(this));
-            const msg = document.getElementById('reviewMsg');
-            msg.textContent = 'جاري إرسال التقييم...';
-            try {
-                const res = await fetch('https://olive-oil-store-api.vercel.app/api/review', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include',
-                    body: JSON.stringify(data)
-                });
-                const result = await res.json();
-                if (res.ok) {
-                    msg.textContent = 'تم إرسال تقييمك بنجاح! شكراً لمشاركتك.';
-                    msg.className = 'text-green-600 text-center mt-2';
-                    this.reset();
-                    setTimeout(() => reviewModal.classList.add('hidden'), 1200);
-                } else {
-                    msg.textContent = result.message || 'حدث خطأ.';
-                    msg.className = 'text-red-600 text-center mt-2';
-                }
-            } catch {
-                msg.textContent = 'تعذر الاتصال بالخادم.';
-                msg.className = 'text-red-600 text-center mt-2';
-            }
-        };
-    </script>
-    <script>
-        // عرض التقييمات الحقيقية بدلاً من الثابتة
-        async function loadReviews() {
-            const testimonialsSection = document.getElementById('testimonials-list');
-            if (!testimonialsSection) return;
-            testimonialsSection.innerHTML = '<div class="text-center text-gray-500 py-8">جاري تحميل التقييمات...</div>';
-            try {
-                const res = await fetch('https://olive-oil-store-api.vercel.app/api/review');
-                const reviews = await res.json();
-                if (Array.isArray(reviews) && reviews.length > 0) {
-                    testimonialsSection.innerHTML = reviews.map(r => `
-        <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:-translate-y-2">
-          <div class="text-yellow-400 text-2xl mb-4">
-            ${'⭐'.repeat(r.rating)}
-          </div>
-          <p class="text-gray-700 mb-4">${r.comment ? r.comment.replace(/</g, '&lt;') : 'بدون تعليق'}</p>
-          <div class="font-semibold text-gray-800">- ${r.user?.name || 'مستخدم'}</div>
-        </div>
-      `).join('');
-                } else {
-                    testimonialsSection.innerHTML = '<div class="text-center text-gray-500 py-8">لا توجد تقييمات بعد.</div>';
-                }
-            } catch {
-                testimonialsSection.innerHTML = '<div class="text-center text-red-500 py-8">تعذر تحميل التقييمات.</div>';
-            }
-        }
-        loadReviews();
-    </script>
+    <!-- ربط ملفات الجافاسكريبت المنفصلة -->
+    <!-- ملف إعداد رابط الـ API المركزي -->
+    <script type="module" src="js/apiConfig.js"></script>
+    <!-- شريط التنقل العلوي (Navbar) -->
+    <script type="module" src="js/navbar.js"></script>
+    <!-- إعدادات المنتج (الأسعار والخصومات والخيارات) -->
+    <script type="module" src="js/productSettings.js"></script>
+    <!-- التايم لاين الجانبي والتنقل بين الأقسام -->
+    <script type="module" src="js/timeline.js"></script>
+    <!-- منطق الطلبات (إرسال الطلب، متابعة الطلبات) -->
+    <script type="module" src="js/order.js"></script>
+    <!-- جلب وعرض آراء العملاء -->
+    <script type="module" src="js/reviews.js"></script>
+    <!-- منطق مودال إضافة/عرض التقييمات -->
+    <script type="module" src="js/reviewModal.js"></script>
+    <!-- منطق تسجيل الدخول والتوثيق -->
+    <script type="module" src="js/auth.js"></script>
 </body>
 
 </html>

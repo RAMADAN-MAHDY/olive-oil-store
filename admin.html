@@ -17,6 +17,33 @@
         </div>
     </header>
     <main class="container mx-auto px-2 md:px-4 py-6 md:py-10">
+        <!-- قسم إعدادات المنتج -->
+        <section id="product-settings-section" class="bg-white rounded-lg shadow-lg p-4 mb-8">
+            <h2 class="text-xl font-bold mb-4 text-[#6b7c32]">إعدادات المنتج</h2>
+            <form id="productSettingsForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block font-semibold mb-1">السعر الأصلي (جنيه)</label>
+                    <input type="number" name="originalPrice" id="originalPrice" required min="1" class="w-full border rounded p-2">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">السعر بعد الخصم (جنيه)</label>
+                    <input type="number" name="discountedPrice" id="discountedPrice" required min="1" class="w-full border rounded p-2">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">نسبة الخصم (%)</label>
+                    <input type="number" name="discountPercent" id="discountPercent" required min="0" max="100" class="w-full border rounded p-2">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">خيارات الكمية/السعر/التوفير</label>
+                    <div id="quantities-list"></div>
+                    <button type="button" id="add-quantity" class="mt-2 bg-[#6b7c32] text-white px-3 py-1 rounded">+ إضافة خيار</button>
+                </div>
+                <div class="md:col-span-2">
+                    <button type="submit" class="bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-2 px-8 rounded-full font-bold">حفظ التعديلات</button>
+                    <span id="settingsMsg" class="ml-4 text-sm font-bold"></span>
+                </div>
+            </form>
+        </section>
         <h1 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-[#6b7c32] text-center md:text-right">إدارة الطلبات</h1>
         <div class="flex flex-col md:flex-row gap-4 md:gap-8">
             <!-- قائمة المستخدمين -->
@@ -43,138 +70,7 @@
           min-width: 700px;
         }
     </style>
-    <script>
-        // تحقق من صلاحيات الأدمن
-        async function checkAdmin() {
-            try {
-                const res = await fetch('https://olive-oil-store-api.vercel.app/api/user/check', { credentials: 'include' });
-                if (!res.ok) throw new Error();
-                const data = await res.json();
-                if (!data.user || !data.user.isAdmin) throw new Error();
-            } catch {
-                alert('هذه الصفحة مخصصة للأدمن فقط. سيتم تحويلك للصفحة الرئيسية.');
-                window.location.href = 'index.html';
-            }
-        }
-        checkAdmin();
-
-        // جلب المستخدمين مع الطلبات
-        async function loadAdminUsers() {
-            const usersList = document.getElementById('users-list');
-            const userOrders = document.getElementById('user-orders');
-            usersList.innerHTML = '<div class="text-center text-gray-500 py-8">جاري تحميل المستخدمين...</div>';
-            try {
-                const res = await fetch('https://olive-oil-store-api.vercel.app/api/order/admin/users', { credentials: 'include' });
-                const users = await res.json();
-                if (Array.isArray(users) && users.length > 0) {
-                    usersList.innerHTML = users.map((u, i) => `
-                        <div class="user-item cursor-pointer p-3 rounded-lg mb-2 flex flex-col gap-1 border hover:bg-[#f8f9fa] ${i===0?'bg-[#e9ecef]':''}" data-index="${i}">
-                            <div class="font-bold text-[#6b7c32]">${u.name}</div>
-                            <div class="text-xs text-gray-500">${u.email}</div>
-                            <div class="text-xs text-gray-700">عدد الطلبات: <span class="font-bold">${u.orders.length}</span></div>
-                        </div>
-                    `).join('');
-                    // عرض أول مستخدم افتراضياً
-                    renderUserOrders(users[0]);
-                    // تفعيل التبديل بين المستخدمين
-                    document.querySelectorAll('.user-item').forEach(item => {
-                        item.onclick = function () {
-                            document.querySelectorAll('.user-item').forEach(i => i.classList.remove('bg-[#e9ecef]'));
-                            this.classList.add('bg-[#e9ecef]');
-                            const idx = +this.getAttribute('data-index');
-                            renderUserOrders(users[idx]);
-                        };
-                    });
-                } else {
-                    usersList.innerHTML = '<div class="text-center text-gray-500 py-8">لا يوجد مستخدمون بعد.</div>';
-                    userOrders.innerHTML = '<div class="text-center text-gray-400 py-8">لا يوجد بيانات</div>';
-                }
-            } catch {
-                usersList.innerHTML = '<div class="text-center text-red-500 py-8">تعذر تحميل المستخدمين.</div>';
-                userOrders.innerHTML = '<div class="text-center text-red-400 py-8">تعذر تحميل الطلبات.</div>';
-            }
-        }
-        // عرض طلبات مستخدم
-        function renderUserOrders(user) {
-            const userOrders = document.getElementById('user-orders');
-            if (!user.orders.length) {
-                userOrders.innerHTML = `<div class='text-center text-gray-400 py-8'>لا توجد طلبات لهذا المستخدم.</div>`;
-                return;
-            }
-            let table = `<div class='mb-4'><span class='font-bold text-[#6b7c32]'>${user.name}</span> - <span class='text-xs text-gray-500'>${user.email}</span></div>`;
-            table += `<table class="min-w-full text-sm text-right rtl:text-right">
-                <thead class="bg-[#f4d03f] text-[#2c3e30]">
-                    <tr>
-                        <th class="py-2 px-3">رقم الطلب</th>
-                        <th class="py-2 px-3">العنوان</th>
-                        <th class="py-2 px-3">المحافظة</th>
-                        <th class="py-2 px-3">الهاتف</th>
-                        <th class="py-2 px-3">الكمية</th>
-                        <th class="py-2 px-3">السعر</th>
-                        <th class="py-2 px-3">الحالة</th>
-                        <th class="py-2 px-3">تعديل الحالة</th>
-                        <th class="py-2 px-3">تاريخ الطلب</th>
-                    </tr>
-                </thead>
-                <tbody>`;
-            table += user.orders.map(order => `
-                <tr class="border-b hover:bg-[#f8f9fa]">
-                    <td class="py-2 px-3 font-mono">${order._id.slice(-6).toUpperCase()}</td>
-                    <td class="py-2 px-3">${order.address}</td>
-                    <td class="py-2 px-3">${order.city}</td>
-                    <td class="py-2 px-3">${order.phone || '-'}</td>
-                    <td class="py-2 px-3">${order.quantity}</td>
-                    <td class="py-2 px-3">${order.price} ج</td>
-                    <td class="py-2 px-3"><span class="px-2 py-1 rounded-full ${getStatusColor(order.status)}">${order.status || 'قيد التنفيذ'}</span></td>
-                    <td class="py-2 px-3">
-                        <select class="status-select border rounded px-2 py-1" data-id="${order._id}">
-                            <option value="تم القبول" ${order.status === 'تم القبول' ? 'selected' : ''}>تم القبول</option>
-                            <option value="جاري التجهيز" ${order.status === 'جاري التجهيز' ? 'selected' : ''}>جاري التجهيز</option>
-                            <option value="جاري التوصيل" ${order.status === 'جاري التوصيل' ? 'selected' : ''}>جاري التوصيل</option>
-                            <option value="تم التسليم" ${order.status === 'تم التسليم' || order.status === 'تم التوصيل' ? 'selected' : ''}>تم التسليم</option>
-                        </select>
-                    </td>
-                    <td class="py-2 px-3 text-xs">${new Date(order.createdAt).toLocaleDateString('ar-EG')}</td>
-                </tr>
-            `).join('');
-            table += '</tbody></table>';
-            userOrders.innerHTML = table;
-            // إضافة حدث تغيير الحالة
-            document.querySelectorAll('.status-select').forEach(sel => {
-                sel.addEventListener('change', async function () {
-                    const orderId = this.getAttribute('data-id');
-                    const newStatus = this.value;
-                    this.disabled = true;
-                    try {
-                        const res = await fetch(`https://olive-oil-store-api.vercel.app/api/order/${orderId}/status`, {
-                            method: 'PATCH',
-                            headers: { 'Content-Type': 'application/json' },
-                            credentials: 'include',
-                            body: JSON.stringify({ status: newStatus })
-                        });
-                        if (res.ok) {
-                            this.classList.add('bg-green-100');
-                            setTimeout(() => this.classList.remove('bg-green-100'), 1000);
-                            loadAdminUsers();
-                        } else {
-                            alert('تعذر تحديث الحالة.');
-                        }
-                    } catch {
-                        alert('تعذر الاتصال بالخادم.');
-                    } finally {
-                        this.disabled = false;
-                    }
-                });
-            });
-        }
-        function getStatusColor(status) {
-            if (status === 'تم التسليم' || status === 'تم التوصيل') return 'bg-green-100 text-green-700';
-            if (status === 'جاري التوصيل') return 'bg-yellow-100 text-yellow-700';
-            if (status === 'جاري التجهيز') return 'bg-blue-100 text-blue-700';
-            return 'bg-gray-200 text-gray-700';
-        }
-        // عند تحميل الصفحة
-        loadAdminUsers();
-    </script>
+    <script type="module" src="js/apiConfig.js"></script>
+    <script type="module" src="js/adminProductSettings.js"></script>
 </body>
 </html>
