@@ -1,12 +1,13 @@
 import { apiUrl } from './apiConfig.js';
 
-// عرض التقييمات مع حد أقصى وزر عرض المزيد
+// عرض التقييمات مع حد أقصى وزر عرض المزيد/أقل
 let allReviews = [];
 let reviewsShown = 3;
 
 async function loadReviews() {
     const testimonialsSection = document.getElementById('testimonials-list');
     const showMoreBtn = document.getElementById('show-more-reviews');
+    const showLessBtn = document.getElementById('show-less-reviews');
     if (!testimonialsSection) return;
     testimonialsSection.innerHTML = '<div class="text-center text-gray-500 py-8">جاري تحميل التقييمات...</div>';
     try {
@@ -18,16 +19,22 @@ async function loadReviews() {
         } else {
             showMoreBtn.classList.add('hidden');
         }
+        showLessBtn.classList.add('hidden');
     } catch {
         testimonialsSection.innerHTML = '<div class="text-center text-red-500 py-8">تعذر تحميل التقييمات.</div>';
         showMoreBtn.classList.add('hidden');
+        showLessBtn.classList.add('hidden');
     }
 }
 
 function renderReviews() {
     const testimonialsSection = document.getElementById('testimonials-list');
+    const showMoreBtn = document.getElementById('show-more-reviews');
+    const showLessBtn = document.getElementById('show-less-reviews');
     if (!Array.isArray(allReviews) || allReviews.length === 0) {
         testimonialsSection.innerHTML = '<div class="text-center text-gray-500 py-8">لا توجد تقييمات بعد.</div>';
+        showMoreBtn.classList.add('hidden');
+        showLessBtn.classList.add('hidden');
         return;
     }
     testimonialsSection.innerHTML = allReviews.slice(0, reviewsShown).map(r => `
@@ -39,14 +46,26 @@ function renderReviews() {
           <div class="font-semibold text-gray-800">- ${r.user?.name || 'مستخدم'}</div>
         </div>
       `).join('');
+    // إظهار/إخفاء الأزرار حسب الحالة
+    if (allReviews.length > reviewsShown) {
+        showMoreBtn.classList.remove('hidden');
+    } else {
+        showMoreBtn.classList.add('hidden');
+    }
+    if (reviewsShown > 3) {
+        showLessBtn.classList.remove('hidden');
+    } else {
+        showLessBtn.classList.add('hidden');
+    }
 }
 
 document.getElementById('show-more-reviews').onclick = function() {
     reviewsShown += 3;
     renderReviews();
-    if (allReviews.length <= reviewsShown) {
-        this.classList.add('hidden');
-    }
+};
+document.getElementById('show-less-reviews').onclick = function() {
+    reviewsShown = 3;
+    renderReviews();
 };
 
 loadReviews();

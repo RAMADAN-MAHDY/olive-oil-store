@@ -13,17 +13,21 @@ import { apiUrl } from './apiConfig.js';
                     if (res.ok) {
                         reviewModal.classList.remove('hidden');
                     } else {
-                        document.getElementById('auth-modal').classList.remove('hidden');
+                        const authModal = document.getElementById('auth-modal');
+                        if (authModal) authModal.classList.remove('hidden');
                     }
                 } catch {
-                    document.getElementById('auth-modal').classList.remove('hidden');
+                    const authModal = document.getElementById('auth-modal');
+                    if (authModal) authModal.classList.remove('hidden');
                 }
             };
         });
     }
     bindOpenReviewButtons();
-    document.getElementById('close-review').onclick = () => reviewModal.classList.add('hidden');
-    document.getElementById('reviewForm').onsubmit = async function (e) {
+    const closeBtn = document.getElementById('close-review');
+    if (closeBtn) closeBtn.onclick = () => reviewModal.classList.add('hidden');
+    const reviewForm = document.getElementById('reviewForm');
+    if (reviewForm) reviewForm.onsubmit = async function (e) {
         e.preventDefault();
         const data = Object.fromEntries(new FormData(this));
         const msg = document.getElementById('reviewMsg');
