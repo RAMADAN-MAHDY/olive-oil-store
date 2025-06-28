@@ -47,7 +47,7 @@
         // تحقق من صلاحيات الأدمن
         async function checkAdmin() {
             try {
-                const res = await fetch('http://localhost:5000/api/user/check', { credentials: 'include' });
+                const res = await fetch('https://olive-oil-store-api.vercel.app/api/user/check', { credentials: 'include' });
                 if (!res.ok) throw new Error();
                 const data = await res.json();
                 if (!data.user || !data.user.isAdmin) throw new Error();
@@ -64,7 +64,7 @@
             const userOrders = document.getElementById('user-orders');
             usersList.innerHTML = '<div class="text-center text-gray-500 py-8">جاري تحميل المستخدمين...</div>';
             try {
-                const res = await fetch('http://localhost:5000/api/order/admin/users', { credentials: 'include' });
+                const res = await fetch('https://olive-oil-store-api.vercel.app/api/order/admin/users', { credentials: 'include' });
                 const users = await res.json();
                 if (Array.isArray(users) && users.length > 0) {
                     usersList.innerHTML = users.map((u, i) => `
@@ -146,7 +146,7 @@
                     const newStatus = this.value;
                     this.disabled = true;
                     try {
-                        const res = await fetch(`http://localhost:5000/api/order/${orderId}/status`, {
+                        const res = await fetch(`https://olive-oil-store-api.vercel.app/api/order/${orderId}/status`, {
                             method: 'PATCH',
                             headers: { 'Content-Type': 'application/json' },
                             credentials: 'include',
