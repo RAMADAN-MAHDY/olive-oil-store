@@ -69,6 +69,8 @@ import { apiUrl } from './apiConfig.js';
                 msg.className = 'text-green-600 text-center mt-2';
                 this.reset();
                 setTimeout(() => authModal.classList.add('hidden'), 1000);
+                // إعادة التحقق من الجلسة بعد تسجيل الدخول
+                if (typeof checkAuthAndToggleUI === 'function') checkAuthAndToggleUI();
             } else {
                 msg.textContent = result.message || 'حدث خطأ.';
                 msg.className = 'text-red-600 text-center mt-2';

@@ -235,8 +235,17 @@
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12">
                 ماذا يقول عملاؤنا
             </h2>
+            <!-- زر إضافة تقييم هنا -->
+            <div class="flex justify-center mb-6">
+              <button id="open-review" class="bg-[#6b7c32] text-white px-6 py-2 rounded-full font-bold shadow hover:bg-[#8ba446] transition">
+                أضف تقييمك
+              </button>
+            </div>
             <div id="testimonials-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- سيتم تعبئة التقييمات ديناميكياً -->
+            </div>
+            <div class="flex justify-center mt-6">
+              <button id="show-more-reviews" class="hidden bg-[#f4d03f] text-[#2c3e30] px-6 py-2 rounded-full font-bold shadow hover:bg-[#ffe066] transition">عرض المزيد</button>
             </div>
         </div>
     </section>
@@ -525,6 +534,51 @@
     <script type="module" src="js/reviewModal.js"></script>
     <!-- منطق تسجيل الدخول والتوثيق -->
     <script type="module" src="js/auth.js"></script>
+
+    <!-- Footer -->
+    <footer class="bg-[#2c3e30] text-white py-6 mt-10 text-center w-full">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="text-lg font-bold flex items-center gap-2">
+                    🫒 زيت الذهب الأخضر
+                </div>
+                <div class="text-sm">جميع الحقوق محفوظة &copy; <span id="footer-year"></span></div>
+                <div class="text-xs text-gray-300">تصميم وتطوير: <span class="font-bold text-yellow-300">بشمهندسك</span></div>
+            </div>
+        </div>
+    </footer>
+    <script>
+      document.getElementById('footer-year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- مودال إضافة التقييم -->
+    <div id="review-modal" class="fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-8 relative">
+            <button id="close-review" class="absolute left-4 top-4 w-10 h-10 bg-[#566] rounded-full text-2xl text-white hover:text-red-500">&times;</button>
+            <h3 class="text-2xl font-bold mb-6 text-[#6b7c32] flex items-center gap-2">
+                <span>💬</span> أضف تقييمك
+            </h3>
+            <form id="reviewForm" class="space-y-4">
+                <div>
+                    <label for="rating" class="block mb-1 font-bold">التقييم (من 1 إلى 5)</label>
+                    <select id="rating" name="rating" required class="w-full border rounded p-2">
+                        <option value="">اختر التقييم</option>
+                        <option value="5">5 نجوم</option>
+                        <option value="4">4 نجوم</option>
+                        <option value="3">3 نجوم</option>
+                        <option value="2">2 نجوم</option>
+                        <option value="1">1 نجمة</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="comment" class="block mb-1 font-bold">تعليقك (اختياري)</label>
+                    <textarea id="comment" name="comment" rows="3" class="w-full border rounded p-2"></textarea>
+                </div>
+                <div id="reviewMsg" class="text-center text-sm"></div>
+                <button type="submit" class="bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-2 px-8 rounded-full font-bold w-full transition hover:scale-105">إرسال التقييم</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
