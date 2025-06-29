@@ -69,3 +69,4 @@ document.getElementById('show-less-reviews').onclick = function() {
 };
 
 loadReviews();
+window.loadReviews = loadReviews;

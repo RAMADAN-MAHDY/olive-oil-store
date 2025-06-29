@@ -34,7 +34,11 @@ import { apiUrl } from './apiConfig.js';
             const res = await fetch(apiUrl('user/register'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    password: data.password
+                })
             });
             const result = await res.json();
             if (res.ok) {
@@ -60,7 +64,10 @@ import { apiUrl } from './apiConfig.js';
             const res = await fetch(apiUrl('user/login'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
+                body: JSON.stringify({
+                    email: data.email,
+                    password: data.password
+                }),
                 credentials: 'include'
             });
             const result = await res.json();
