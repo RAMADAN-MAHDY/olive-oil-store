@@ -137,7 +137,7 @@
                     <div class="text-4xl mb-4">
                         🥗
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">مثالي للطبخ</h3>
+                    <h3 class="text-xl font-semibold mb-2">مثالي للالطبخ</h3>
                     <p class="text-gray-700">
                         طعم مميز ونكهة غنية تضفي على أطباقك مذاقاً لا يُقاوم، مناسب للسلطات والطبخ والتحمير
                     </p>
@@ -213,4 +213,393 @@
                 box-shadow: 0 0 20px 0 #f4d03f44;
             }
 
-{
+            50% {
+                box-shadow: 0 0 40px 8px #f4d03f99;
+            }
+        }
+
+        .animate-timeline-glow {
+            animation: timeline-glow 2.5s ease-in-out infinite;
+        }
+
+        /* تمييز النقطة النشطة */
+        .timeline-point.active {
+            border-color: #f4d03f !important;
+            box-shadow: 0 0 0 8px #f4d03f33, 0 2px 16px #f4d03f55;
+        }
+
+        /* إظهار نبض للنقطة النشطة */
+        .timeline-point.active .animate-pulse {
+            display: block !important;
+        }
+    </style>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-[100px] bg-[#f8f9fa]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12">
+                ماذا يقول عملاؤنا
+            </h2>
+            <!-- زر إضافة تقييم هنا -->
+            <div class="flex justify-center mb-6">
+              <button id="open-review" class="bg-[#6b7c32] text-white px-6 py-2 rounded-full font-bold shadow hover:bg-[#8ba446] transition">
+                أضف تقييمك
+              </button>
+            </div>
+            <div id="testimonials-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- سيتم تعبئة التقييمات ديناميكياً -->
+            </div>
+            <div class="flex justify-center mt-6">
+              <button id="show-more-reviews" class="hidden bg-[#f4d03f] text-[#2c3e30] px-6 py-2 rounded-full font-bold shadow hover:bg-[#ffe066] transition">عرض المزيد</button>
+              <button id="show-less-reviews" class="hidden bg-[#6b7c32] text-white px-6 py-2 rounded-full font-bold shadow hover:bg-[#8ba446] transition ml-2">عرض أقل</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantees Section -->
+    <section class="py-[100px] text-[#34873] bg-gradient-to-r from-[#2c3e30] to-[#34495e]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12">
+                ضماناتنا لك
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div
+                    class="bg-white bg-opacity-10 p-6 rounded-lg shadow-lg transition-transform transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">
+                        ✅
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">ضمان الجودة</h3>
+                    <p class="text-gray-600">
+                        منتج طبيعي 100% مع ضمان استرداد المال خلال 30 يوم
+                    </p>
+                </div>
+                <div
+                    class="bg-white bg-opacity-10 p-6 rounded-lg shadow-lg transition-transform transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">
+                        🚚
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">توصيل مجاني</h3>
+                    <p class="text-gray-600">
+                        توصيل مجاني لجميع أنحاء الجمهورية خلال 2-3 أيام عمل
+                    </p>
+                </div>
+                <div
+                    class="bg-white bg-opacity-10 p-6 rounded-lg shadow-lg transition-transform transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">
+                        🔒
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">أمان الدفع</h3>
+                    <p class="text-gray-600">
+                        دفع آمن عند الاستلام
+                    </p>
+                </div>
+                <div
+                    class="bg-white bg-opacity-10 p-6 rounded-lg shadow-lg transition-transform transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">
+                        📞
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">دعم العملاء</h3>
+                    <p class="text-gray-600">
+                        خدمة عملاء متاحة 24/7 للرد على جميع استفساراتكم
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section id="order" class="py-[100px] bg-gradient-to-r from-[#f4d03f] to-[#f7dc6f]">
+        <div class="container mx-auto px-4">
+            <div class="bg-white p-8 rounded-lg shadow-lg max-w-xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
+                    اطلب الآن واحصل على خصم 40%
+                </h2>
+                <form id="orderForm">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-semibold mb-2">الاسم الكامل *</label>
+                        <input type="text" id="name" name="name" required
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b7c32]">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="phone" class="block text-gray-700 font-semibold mb-2">رقم الهاتف *</label>
+                        <input type="tel" id="phone" name="phone" required
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b7c32]">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="address" class="block text-gray-700 font-semibold mb-2">العنوان بالتفصيل *</label>
+                        <textarea id="address" name="address" rows="3" required
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b7c32]"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="city" class="block text-gray-700 font-semibold mb-2">المحافظة *</label>
+                        <select id="city" name="city" required
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b7c32]">
+                            <option value="">اختر المحافظة</option>
+                            <option value="cairo">القاهرة</option>
+                            <option value="giza">الجيزة</option>
+                            <option value="alexandria">الإسكندرية</option>
+                            <option value="sharkia">الشرقية</option>
+                            <option value="beheira">البحيرة</option>
+                            <option value="dakahlia">الدقهلية</option>
+                            <option value="other">أخرى</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">اختر الكمية:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                            <div id="quantity-option-1" class="quantity-option bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32]" 
+                                data-quantity="1" data-price="120">
+                                <div class="text-lg font-bold mb-2"></div>
+                                <div class="text-gray-700"></div>
+                                <div class="text-red-500 text-sm font-semibold"></div>
+                            </div>
+                            <div id="quantity-option-2" class="quantity-option bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32]" 
+                                data-quantity="2" data-price="200">
+                                <div class="text-lg font-bold mb-2"></div>
+                                <div class="text-gray-700"></div>
+                                <div class="text-red-500 text-sm font-semibold"></div>
+                            </div>
+                            <div id="quantity-option-3" class="quantity-option bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32]" 
+                                data-quantity="3" data-price="270">
+                                <div class="text-lg font-bold mb-2"></div>
+                                <div class="text-gray-700"></div>
+                                <div class="text-red-500 text-sm font-semibold"></div>
+                            </div>
+                            <div id="quantity-option-4" class="quantity-option bg-[#f8f9fa] p-4 rounded-lg text-center cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#6b7c32]" 
+                                data-quantity="4" data-price="320">
+                                <div class="text-lg font-bold mb-2"></div>
+                                <div class="text-gray-700"></div>
+                                <div class="text-red-500 text-sm font-semibold"></div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedQuantity" name="selectedQuantity" value="">
+                        <input type="hidden" id="selectedPrice" name="selectedPrice" value="">
+
+                    </div>
+                    <button type="submit"
+                        class="bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-3 px-8 rounded-full text-lg font-bold transition-all duration-300 w-full shadow-lg hover:shadow-2xl hover:scale-105">
+                        إرسال الطلب
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Status Modal -->
+    <div id="orders-modal" class="fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl p-8 relative sm:p-8 p-2 sm:rounded-xl rounded-lg sm:w-full w-[98vw] sm:max-w-2xl max-w-[98vw] h-auto sm:h-auto min-h-[60vh] flex flex-col">
+            <button id="close-orders"
+                class="absolute left-4 w-10 h-10 bg-[#566] rounded-full top-4 text-2xl text-white hover:text-red-500">&times;</button>
+            <h3 class="text-2xl font-bold mb-6 text-[#6b7c32] flex items-center gap-2 sm:text-2xl text-lg">
+                <span>🛒</span> متابعة حالة الطلبات
+            </h3>
+            <div id="orders-list" class="space-y-4 min-h-[120px] text-right flex-1 overflow-y-auto"></div>
+        </div>
+    </div>
+    <style>
+        /* حركة طفو الزيتونة */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-40px);
+            }
+        }
+
+        .animate-float {
+            animation: float 2.5s ease-in-out infinite;
+        }
+
+        /* وميض خط التايم لاين */
+        @keyframes timeline-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px 0 #f4d03f44;
+            }
+
+            50% {
+                box-shadow: 0 0 40px 8px #f4d03f99;
+            }
+        }
+
+        .animate-timeline-glow {
+            animation: timeline-glow 2.5s ease-in-out infinite;
+        }
+
+        /* تمييز النقطة النشطة */
+        .timeline-point.active {
+            border-color: #f4d03f !important;
+            box-shadow: 0 0 0 8px #f4d03f33, 0 2px 16px #f4d03f55;
+        }
+
+        /* إظهار نبض للنقطة النشطة */
+        .timeline-point.active .animate-pulse {
+            display: block !important;
+        }
+    </style>
+
+    <!-- Timeline Navigation -->
+    <!-- التايم لاين الجانبي: يظهر على جميع الشاشات (يمكنك تعديله ليظهر فقط على الشاشات الكبيرة بإضافة كلاس hidden...) -->
+    <div class="fixed top-1/2 sm:left-10 left-1  transform -translate-y-1/2 z-50 pointer-events-none">
+        <!-- خط التايم لاين المتدرج مع وميض -->
+        <div
+            class="w-1 h-[420px] bg-gradient-to-b from-[#6b7c32] via-[#f4d03f] to-[#6b7c32] rounded-md absolute left-1/2 top-0 transform -translate-x-1/2 opacity-70 animate-timeline-glow">
+        </div>
+        <!-- نقاط التايم لاين -->
+        <div class="flex flex-col items-center gap-10 relative z-10">
+            <!-- نقطة: الرئيسية -->
+            <div class="timeline-point group w-7 h-7 bg-white border-4 border-[#6b7c32] rounded-full shadow-xl transition-all duration-300 pointer-events-auto cursor-pointer flex items-center justify-center relative hover:scale-110 hover:border-[#f4d03f]"
+                data-target="#home" title="الرئيسية">
+                <!-- Tooltip -->
+                <span
+                    class="absolute left-1/2 top-full mt-2 -translate-x-1/2 bg-[#2c3e30] text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap">الرئيسية</span>
+                <!-- أيقونة -->
+                <span class="text-xl">🏠</span>
+                <!-- نبض للنقطة النشطة -->
+                <span class="absolute w-12 h-12 rounded-full bg-yellow-300 opacity-30 animate-pulse -z-10"
+                    style="display:none;"></span>
+            </div>
+            <!-- نقطة: المميزات -->
+            <div class="timeline-point group w-7 h-7 bg-white border-4 border-[#6b7c32] rounded-full shadow-xl transition-all duration-300 pointer-events-auto cursor-pointer flex items-center justify-center relative hover:scale-110 hover:border-[#f4d03f]"
+                data-target="#features" title="المميزات">
+                <span
+                    class="absolute left-1/2 top-full mt-2 -translate-x-1/2 bg-[#2c3e30] text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap">المميزات</span>
+                <span class="text-xl">✨</span>
+            </div>
+            <!-- نقطة: المنتج -->
+            <div class="timeline-point group w-7 h-7 bg-white border-4 border-[#6b7c32] rounded-full shadow-xl transition-all duration-300 pointer-events-auto cursor-pointer flex items-center justify-center relative hover:scale-110 hover:border-[#f4d03f]"
+                data-target="#product" title="المنتج">
+                <span
+                    class="absolute left-1/2 top-full mt-2 -translate-x-1/2 bg-[#2c3e30] text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap">المنتج</span>
+                <span class="text-xl">🫒</span>
+            </div>
+            <!-- نقطة: آراء العملاء -->
+            <div class="timeline-point group w-7 h-7 bg-white border-4 border-[#6b7c32] rounded-full shadow-xl transition-all duration-300 pointer-events-auto cursor-pointer flex items-center justify-center relative hover:scale-110 hover:border-[#f4d03f]"
+                data-target="#testimonials" title="آراء العملاء">
+                <span
+                    class="absolute left-1/2 top-full mt-2 -translate-x-1/2 bg-[#2c3e30] text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap">العملاء</span>
+                <span class="text-xl">💬</span>
+            </div>
+            <!-- نقطة: اطلب الآن -->
+            <div class="timeline-point group w-7 h-7 bg-white border-4 border-[#6b7c32] rounded-full shadow-xl transition-all duration-300 pointer-events-auto cursor-pointer flex items-center justify-center relative hover:scale-110 hover:border-[#f4d03f]"
+                data-target="#order" title="اطلب الآن">
+                <span
+                    class="absolute left-1/2 top-full mt-2 -translate-x-1/2 bg-[#2c3e30] text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap">الآن</span>
+                <span class="text-xl">🛒</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ربط ملفات الجافاسكريبت المنفصلة -->
+    <!-- ملف إعداد رابط الـ API المركزي -->
+    <script type="module" src="js/apiConfig.js"></script>
+    <!-- شريط التنقل العلوي (Navbar) -->
+    <script type="module" src="js/navbar.js"></script>
+    <!-- إعدادات المنتج (الأسعار والخصومات والخيارات) -->
+    <script type="module" src="js/productSettings.js"></script>
+    <!-- التايم لاين الجانبي والتنقل بين الأقسام -->
+    <script type="module" src="js/timeline.js"></script>
+    <!-- منطق الطلبات (إرسال الطلب، متابعة الطلبات) -->
+    <script type="module" src="js/order.js"></script>
+    <!-- جلب وعرض آراء العملاء -->
+    <script type="module" src="js/reviews.js"></script>
+    <!-- منطق مودال إضافة/عرض التقييمات -->
+    <script type="module" src="js/reviewModal.js"></script>
+    <!-- منطق تسجيل الدخول والتوثيق -->
+    <script type="module" src="js/auth.js"></script>
+
+    <!-- Footer -->
+    <footer class="bg-[#2c3e30] text-white py-6 mt-10 text-center w-full">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="text-lg font-bold flex items-center gap-2">
+                    🫒 زيت الذهب الأخضر
+                </div>
+                <div class="text-sm">جميع الحقوق محفوظة &copy; <span id="footer-year"></span></div>
+                <div class="text-xs text-gray-300">تصميم وتطوير: <a href="https://ramadan-three.vercel.app/" target="_blank" rel="noopener" class="font-bold text-yellow-300 underline h[...]">RAMADAN</a></div>
+            </div>
+        </div>
+    </footer>
+    <script>
+      document.getElementById('footer-year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- مودال إضافة التقييم -->
+    <div id="review-modal" class="fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-8 relative">
+            <button id="close-review" class="absolute left-4 top-4 w-10 h-10 bg-[#566] rounded-full text-2xl text-white hover:text-red-500">&times;</button>
+            <h3 class="text-2xl font-bold mb-6 text-[#6b7c32] flex items-center gap-2">
+                <span>💬</span> أضف تقييمك
+            </h3>
+            <form id="reviewForm" class="space-y-4">
+                <div>
+                    <label for="rating" class="block mb-1 font-bold">التقييم (من 1 إلى 5)</label>
+                    <select id="rating" name="rating" required class="w-full border rounded p-2">
+                        <option value="">اختر التقييم</option>
+                        <option value="5">5 نجوم</option>
+                        <option value="4">4 نجوم</option>
+                        <option value="3">3 نجوم</option>
+                        <option value="2">2 نجوم</option>
+                        <option value="1">1 نجمة</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="comment" class="block mb-1 font-bold">تعليقك (اختياري)</label>
+                    <textarea id="comment" name="comment" rows="3" class="w-full border rounded p-2"></textarea>
+                </div>
+                <div id="reviewMsg" class="text-center text-sm"></div>
+                <button type="submit" class="bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-2 px-8 rounded-full font-bold w-full transition hover:scale-105">إرسال التقييم</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- مودال تسجيل الدخول والتسجيل -->
+<div id="auth-modal" class="fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center hidden">
+  <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-8 relative">
+    <button id="close-auth" type="button" class="absolute left-4 top-4 w-10 h-10 bg-[#566] rounded-full text-2xl text-white hover:text-red-500">&times;</button>
+    <div class="flex justify-center mb-6 gap-4">
+      <button id="show-login" type="button" class="border-b-2 border-[#6b7c32] text-[#6b7c32] font-bold px-4 py-2">تسجيل الدخول</button>
+      <button id="show-register" type="button" class="text-gray-500 font-bold px-4 py-2">إنشاء حساب</button>
+    </div>
+    <form id="loginForm" class="space-y-4">
+      <div>
+        <label for="loginEmail" class="block mb-1 font-bold">البريد الإلكتروني</label>
+        <input type="email" id="loginEmail" name="email" required class="w-full border rounded p-2">
+      </div>
+      <div>
+        <label for="loginPassword" class="block mb-1 font-bold">كلمة المرور</label>
+        <input type="password" id="loginPassword" name="password" required class="w-full border rounded p-2">
+      </div>
+      <div id="loginMsg" class="text-center text-sm"></div>
+      <button type="submit" class="bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-2 px-8 rounded-full font-bold w-full transition hover:scale-105">دخول</button>
+    </form>
+    <form id="registerForm" class="space-y-4 hidden">
+      <div>
+        <label for="registerName" class="block mb-1 font-bold">الاسم الكامل</label>
+        <input type="text" id="registerName" name="name" required class="w-full border rounded p-2">
+      </div>
+      <div>
+        <label for="registerEmail" class="block mb-1 font-bold">البريد الإلكتروني</label>
+        <input type="email" id="registerEmail" name="email" required class="w-full border rounded p-2">
+      </div>
+      <div>
+        <label for="registerPassword" class="block mb-1 font-bold">كلمة المرور</label>
+        <input type="password" id="registerPassword" name="password" required class="w-full border rounded p-2">
+      </div>
+      <div id="registerMsg" class="text-center text-sm"></div>
+      <button type="submit" class="bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-2 px-8 rounded-full font-bold w-full transition hover:scale-105">إنشاء حساب</button>
+    </form>
+  </div>
+</div>
+</body>
+
+</html>
