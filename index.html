@@ -51,7 +51,7 @@
                     </ul>
                     <!-- Mobile menu -->
                     <div id="mobile-menu"
-                        class="fixed top-0 right-0 h-full w-4/5 max-w-xs bg-white bg-opacity-90 backdrop-blur-lg shadow-2xl rounded-l-3xl z-50 flex flex-col items-end pr-8 pt-8 space-y-6 text-right text-lg font-bold transform translate-x-full transition-transform duration-300 ease-in-out">
+                        class="fixed top-0 right-0 h-full w-4/5 max-w-xs bg-white bg-opacity-90 backdrop-blur-lg shadow-2xl rounded-l-3xl z-50 flex flex-col items-end pr-8 pt-8 space-y-6 text-righ[...]">
                         <div class="flex items-center justify-between w-full mb-8">
                             <span class="text-[#6b7c32] text-2xl font-extrabold flex items-center gap-2">🫒 زيت الذهب
                                 الأخضر</span>
@@ -86,7 +86,7 @@
     <section id="home"
         class="relative py-[120px] md:py-[100px] lg:py-[80px] text-center overflow-hidden bg-gradient-to-br from-[#1a2e05] via-[#2d5016] to-[#3d6b1f]">
         <div class="absolute inset-0 opacity-30 z-0"
-            style="background: url('data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'>...') repeat;">
+            style="background: url('data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><defs><pattern id=\'grain\' width=\'100\' height=\'100\' patternUnits=\'userSpaceOnUse\'>...') repeat;">
         </div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="relative z-10 animate__animated animate__fadeInUp">
@@ -95,13 +95,53 @@
                     زيت الذهب الأخضر الطبيعي
                 </h1>
                 <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-gray-200">
-                    اكتشف سر الصحة والطعم الأصيل مع أجود أنواع زيت الزيتون البكر الممتاز، مستخرج من أفضل الزيتون الطبيعي
+                    اكتشف سر الصحة والطعم الأصيل مع أجود أنواع زيت الزيتون البكر الممتاز، مستخرج من أفضل الزيتون الط[...]
                     بطرق تقليدية محافظة على كامل فوائده الغذائية
                 </p>
                 <a href="#order"
                     class="bg-gradient-to-r from-[#f4d03f] to-[#f7dc6f] text-[#2c3e30] py-3 px-8 rounded-full text-lg font-bold transition-all duration-300 inline-block shadow-lg hover:shadow-2xl hover:scale-105">
                     اطلب الآن - خصم <span id="Discount_rate"></span>%
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-[100px] bg-gradient-to-r from-[#2784e2] to-[#e9ecef] text-[#2c3e30]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12">
+                لماذا زيت الذهب الأخضر؟
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">
+                        🌿
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">طبيعي 100%</h3>
+                    <p class="text-gray-700">
+                        مستخرج من زيتون طبيعي بدون مواد كيميائية أو مبيدات حشرية، محافظ على كامل قيمته الغذائية ونكهت[...]
+                        الأصيلة
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">
+                        ❤️
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">مفيد للقلب</h3>
+                    <p class="text-gray-700">
+                        غني بالأحماض الدهنية الأحادية غير المشبعة والمضادات الطبيعية للأكسدة التي تحمي القلب وتحسن
+                        الدورة الدموية
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">
+                        🥗
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">مثالي للطبخ</h3>
+                    <p class="text-gray-700">
+                        طعم مميز ونكهة غنية تضفي على أطباقك مذاقاً لا يُقاوم، مناسب للسلطات والطبخ والتحمير
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -147,142 +187,30 @@
         </div>
     </section>
 
-    <!-- Order Form Section -->
-    <section id="order" class="py-[100px] bg-gradient-to-r from-[#f4d03f] to-[#f7dc6f]">
-        <div class="container mx-auto px-4">
-            <div class="bg-white p-8 rounded-lg shadow-lg max-w-xl mx-auto">
-                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
-                    اطلب الآن واحصل على خصم 40%
-                </h2>
-                <form id="orderForm">
-                    <div class="mb-4">
-                        <label for="name" class="block text-gray-700 font-semibold mb-2">الاسم الكامل *</label>
-                        <input type="text" id="name" name="name" required
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b7c32]">
-                    </div>
+    <style>
+        /* حركة طفو الزيتونة */
+        @keyframes float {
 
-                    <div class="mb-4">
-                        <label for="phone" class="block text-gray-700 font-semibold mb-2">رقم الهاتف *</label>
-                        <input type="tel" id="phone" name="phone" required
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b7c32]">
-                    </div>
+            0%,
+            100% {
+                transform: translateY(0);
+            }
 
-                    <div class="mb-4">
-                        <label for="address" class="block text-gray-700 font-semibold mb-2">العنوان بالتفصيل *</label>
-                        <textarea id="address" name="address" rows="3" required
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b7c32]"></textarea>
-                    </div>
+            50% {
+                transform: translateY(-40px);
+            }
+        }
 
-                    <div class="mb-4">
-                        <label for="city" class="block text-gray-700 font-semibold mb-2">المحافظة *</label>
-                        <select id="city" name="city" required
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b7c32]">
-                            <option value="">اختر المحافظة</option>
-                            <option value="cairo">القاهرة</option>
-                            <option value="giza">الجيزة</option>
-                            <option value="alexandria">الإسكندرية</option>
-                            <option value="sharkia">الشرقية</option>
-                            <option value="beheira">البحيرة</option>
-                            <option value="dakahlia">الدقهلية</option>
-                            <option value="other">أخرى</option>
-                        </select>
-                    </div>
+        .animate-float {
+            animation: float 2.5s ease-in-out infinite;
+        }
 
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-semibold mb-2">اختر الكمية:</label>
-                        <div id="quantity-options" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                            <!-- سيتم توليد خيارات الكمية ديناميكياً من الباك -->
-                        </div>
-                        <input type="hidden" id="selectedQuantity" name="selectedQuantity" value="">
-                        <input type="hidden" id="selectedPrice" name="selectedPrice" value="">
+        /* وميض خط التايم لاين */
+        @keyframes timeline-glow {
 
-                    </div>
-                    <button type="submit"
-                        class="bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-3 px-8 rounded-full text-lg font-bold transition-all duration-300 w-full shadow-lg hover:shadow-2xl hover:scale-105">
-                        إرسال الطلب
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
+            0%,
+            100% {
+                box-shadow: 0 0 20px 0 #f4d03f44;
+            }
 
-    <!-- Order Status Modal -->
-    <div id="orders-modal" class="fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center hidden">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl p-8 relative sm:p-8 p-2 sm:rounded-xl rounded-lg sm:w-full w-[98vw] sm:max-w-2xl max-w-[98vw] h-auto sm:h-auto min-h-[60vh] flex flex-col justify-start">
-            <button id="close-orders"
-                class="absolute left-4 w-10 h-10 bg-[#566] rounded-full top-4 text-2xl text-white hover:text-red-500">&times;</button>
-            <h3 class="text-2xl font-bold mb-6 text-[#6b7c32] flex items-center gap-2 sm:text-2xl text-lg">
-                <span>🛒</span> متابعة حالة الطلبات
-            </h3>
-            <div id="orders-list" class="space-y-4 min-h-[120px] text-right flex-1 overflow-y-auto"></div>
-        </div>
-    </div>
-
-    <!-- باقي الصفحة بنفس ما كان -->
-
-    <!-- ربط ملفات الجافاسكريبت المنفصلة -->
-    <!-- ملف إعداد رابط الـ API المركزي -->
-    <script type="module" src="js/apiConfig.js"></script>
-    <!-- شريط التنقل العلوي (Navbar) -->
-    <script type="module" src="js/navbar.js"></script>
-    <!-- إعدادات المنتج (الأسعار والخصومات والخيارات) -->
-    <script type="module" src="js/productSettings.js"></script>
-    <!-- التايم لاين الجانبي والتنقل بين الأقسام -->
-    <script type="module" src="js/timeline.js"></script>
-    <!-- منطق الطلبات (إرسال الطلب، متابعة الطلبات) -->
-    <script type="module" src="js/order.js"></script>
-    <!-- جلب وعرض آراء العملاء -->
-    <script type="module" src="js/reviews.js"></script>
-    <!-- منطق مودال إضافة/عرض التقييمات -->
-    <script type="module" src="js/reviewModal.js"></script>
-    <!-- منطق تسجيل الدخول والتوثيق -->
-    <script type="module" src="js/auth.js"></script>
-
-    <!-- Footer -->
-    <footer class="bg-[#2c3e30] text-white py-6 mt-10 text-center w-full">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="text-lg font-bold flex items-center gap-2">
-                    🫒 زيت الذهب الأخضر
-                </div>
-                <div class="text-sm">جميع الحقوق محفوظة &copy; <span id="footer-year"></span></div>
-                <div class="text-xs text-gray-300">تصميم وتطوير: <a href="https://ramadan-three.vercel.app/" target="_blank" rel="noopener" class="font-bold text-yellow-300 underline hover:text-yellow-400">رمضان</a></div>
-            </div>
-        </div>
-    </footer>
-    <script>
-      document.getElementById('footer-year').textContent = new Date().getFullYear();
-    </script>
-
-    <!-- مودال إضافة التقييم -->
-    <div id="review-modal" class="fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center hidden">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-8 relative">
-            <button id="close-review" class="absolute left-4 top-4 w-10 h-10 bg-[#566] rounded-full text-2xl text-white hover:text-red-500">&times;</button>
-            <h3 class="text-2xl font-bold mb-6 text-[#6b7c32] flex items-center gap-2">
-                <span>💬</span> أضف تقييمك
-            </h3>
-            <form id="reviewForm" class="space-y-4">
-                <div>
-                    <label for="rating" class="block mb-1 font-bold">التقييم (من 1 إلى 5)</label>
-                    <select id="rating" name="rating" required class="w-full border rounded p-2">
-                        <option value="">اختر التقييم</option>
-                        <option value="5">5 نجوم</option>
-                        <option value="4">4 نجوم</option>
-                        <option value="3">3 نجوم</option>
-                        <option value="2">2 نجوم</option>
-                        <option value="1">1 نجمة</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="comment" class="block mb-1 font-bold">تعليقك (اختياري)</label>
-                    <textarea id="comment" name="comment" rows="3" class="w-full border rounded p-2"></textarea>
-                </div>
-                <div id="reviewMsg" class="text-center text-sm"></div>
-                <button type="submit" class="bg-gradient-to-r from-[#6b7c32] to-[#8ba446] text-white py-2 px-8 rounded-full font-bold w-full transition hover:scale-105">إرسال التقييم</button>
-            </form>
-        </div>
-    </div>
-
-</body>
-
-</html>
+{
