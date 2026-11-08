@@ -10,13 +10,15 @@ import { apiUrl } from './apiConfig.js';
     const registerForm = document.getElementById('registerForm');
     const loginForm = document.getElementById('loginForm');
 
-    // تحسين تصميم المودال ونموذج إنشاء الحساب على الشاشات المختلفة.
+    // تنسيق النافذة مع الحفاظ على إخفاء النموذج غير النشط.
     const authStyles = document.createElement('style');
     authStyles.textContent = `
         #auth-modal { padding: 1rem; backdrop-filter: blur(5px); }
         #auth-modal > div {
             box-sizing: border-box;
+            width: min(100%, 28rem);
             max-height: min(90vh, 680px);
+            max-height: min(90dvh, 680px);
             overflow-y: auto;
             padding: 2rem;
             border: 1px solid rgba(107, 124, 50, .16);
@@ -47,7 +49,8 @@ import { apiUrl } from './apiConfig.js';
             background: white;
             box-shadow: 0 2px 8px rgba(44, 62, 48, .12);
         }
-        #auth-modal form { display: grid; gap: 1rem; }
+        #auth-modal form:not(.hidden) { display: grid; gap: 1rem; }
+        #auth-modal form.hidden { display: none !important; }
         #auth-modal form > div:not([id$="Msg"]) { min-width: 0; }
         #auth-modal form label { display: block; margin-bottom: .45rem; color: #374151; font-size: .92rem; font-weight: 700; }
         #auth-modal form input {
@@ -76,7 +79,7 @@ import { apiUrl } from './apiConfig.js';
     `;
     document.head.appendChild(authStyles);
 
-    // إضافة عنوان واضح للمودال، مرة واحدة.
+    // إضافة عنوان واضح للمودال مرة واحدة.
     const authPanel = authModal?.firstElementChild;
     if (authPanel && !authPanel.querySelector('.auth-heading')) {
         const heading = document.createElement('div');
