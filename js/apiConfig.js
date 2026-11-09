@@ -1,7 +1,6 @@
 // ملف إعداد رابط الـ API الرئيسي
-// export const API_BASE_URL = 'http://localhost:5000/api';
-export const API_BASE_URL = 'https://olive-oil-store-api.vercel.app/api';
-
+// استخدام مسار نسبي يجعل الطلبات تمر عبر نطاق الواجهة نفسه، فتُحفظ Cookie الجلسة كـ first-party cookie.
+export const API_BASE_URL = '/api';
 
 // دالة مساعدة لبناء الروابط بسهولة
 export function apiUrl(path) {
