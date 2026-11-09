@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+    {
       "source": "/api/:path*",
       "destination": "https://olive-oil-store-api.vercel.app/api/:path*"
     }
